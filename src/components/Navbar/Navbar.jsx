@@ -23,6 +23,7 @@ export default function Header() {
   const logout = () => {
     dispatch(clearTokens());
     dispatch(clearData());
+    setUnderscore(0);
     return navigate("/");
   }
 
@@ -46,9 +47,9 @@ export default function Header() {
                           value={underscore}
                           onChange={(e, value) => setUnderscore(value)} 
                           >
-                      <Tab label="About Us" value={0} onClick={() => navigate("/about")}/>
-                      <Tab label="Login" value={3} onClick={() => navigate("/")}/>
-                      <Tab label="Register" value={2} onClick={() => navigate("/register")}/>
+                      <Tab label="About Us" value={2} onClick={() => navigate("/about")}/>
+                      <Tab label="Login" value={0} onClick={() => navigate("/")}/>
+                      <Tab label="Register" value={1} onClick={() => navigate("/register")}/>
                     </Tabs>
 
   const bigDisplay = globalUserData?loggedIn:loggedOut

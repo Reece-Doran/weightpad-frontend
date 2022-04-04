@@ -23,7 +23,7 @@ export default function Login() {
     const promiseResult = await dispatch(getTokens({username, password}));
     const { payload } = promiseResult;
 
-    !payload? setAlert(true): await dispatch(getUserData({username}));
+    !payload || promiseResult.status===403? setAlert(true): await dispatch(getUserData({username}));
     navigate("/schedule");
   }
 
