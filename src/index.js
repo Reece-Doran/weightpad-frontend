@@ -3,11 +3,34 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from "react-redux"
+import store from './store/store';
+import { ThemeProvider } from '@mui/material/styles';
+import { CircularProgress } from '@mui/material/';
+import { theme } from "./config/theme/theme"
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
+
+let persistor = persistStore(store);
 
 ReactDOM.render(
+  
   <React.StrictMode>
-    <h1>HALLO SIRS</h1>
-    {/* <App /> */}
+    {/* <div>
+    <style jsx global>{`
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    `}</style>
+  </div> */}
+    <ThemeProvider theme={theme}>
+      <Provider store = {store}>
+        <PersistGate loading={<CircularProgress />} persistor={persistor}>
+          <App />
+        </PersistGate>  
+      </Provider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
