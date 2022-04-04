@@ -20,11 +20,15 @@ export default function Login() {
   const loginUser = async (e) => {    
     e.preventDefault();
 
-    const promiseResult = await dispatch(getTokens({username, password}));
-    const { payload } = promiseResult;
+    try{
+      await dispatch(getTokens({username, password}));
+      await dispatch(getUserData({username}));
+      navigate("/schedule");
 
-    !payload || promiseResult.status===403? setAlert(true): await dispatch(getUserData({username}));
-    navigate("/schedule");
+    } catch(e) {
+      setAlert(true);
+    }
+
   }
 
   useEffect(() => {
