@@ -1,6 +1,7 @@
 
 // API endpoints
 export const BACKEND_URL = "https://weightpad-backend.herokuapp.com";
+// export const BACKEND_URL = "http://localhost:8080";
 
 export const LOGIN_URL = BACKEND_URL+"/api/v1/login";
 export const USER_DATA_URL = BACKEND_URL+"/api/v1/userinfo/email/";

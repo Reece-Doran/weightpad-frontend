@@ -15,15 +15,29 @@ export default function Routine(props) {
     (state) => state.jwt.value.accessToken
   )
 
+  const schedule = useSelector(
+    (state) => state.user.value.schedule
+  )
+
+
   const viewExercises = () => {
     navigate("/exercises/" +props.routineId)
   }
 
   
-
+    //used for checking schedule for routine, returns the routine if found
+    const checkScheduleForRoutine = (routineId) => {
+      const scheduleArr = Object.values(schedule)
+      return scheduleArr.find(item => item?item.id === routineId:undefined);
+    }
   const deleteRoutineContents = async (routineId) => {
 
-    //TODO items in schedule cannot be deleted, solveon backend or implement warned + remove from scheule
+    // Prevents the user from deleting a routine that is already set to their schedule
+    if(checkScheduleForRoutine(routineId)) {
+      alert("You cannot delete a routine that is set to your schedule");
+      return
+    }
+
     await authRequest.delete(DELETE_ROUTINE_URL+routineId, {
       headers: {
           "Authorization": "Bearer " + accessToken,
