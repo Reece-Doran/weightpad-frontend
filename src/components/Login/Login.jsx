@@ -22,9 +22,7 @@ export default function Login() {
 
     const promiseResult = await dispatch(getTokens({username, password}));
     const { payload } = promiseResult;
-
-    console.log(payload);
-
+    
     if(!payload){
       setAlert(true) 
     } else {
