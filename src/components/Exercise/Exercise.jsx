@@ -23,9 +23,26 @@ export default function Exercise(props) {
     (state) => state.jwt.value.accessToken
   )
 
+  const schedule = useSelector(
+    (state) => state.jwt.schedule
+  )
+
+  //used for checking schedule for routine, returns the routine if found
+  const checkScheduleForRoutine = (routineId) => {
+    const scheduleArr = Object.values(schedule)
+    return scheduleArr.find(item => item.id === routineId);
+  }
+
   const deleteExerciseContents = async () => {
     const exerciseId = props.id;
     const routineId = props.routineId;
+
+    // Prevents the user from deleting a routine that is already set to their schedule
+    if(checkScheduleForRoutine(routineId)) {
+      alert("You cannot delete a routine that is set to you schedule");
+      return
+    }
+
     await authRequest.delete(DELETE_EXERCISE_URL + exerciseId, {
       headers: {
           "Authorization": "Bearer " + accessToken,

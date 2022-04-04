@@ -1,7 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { authRequest } from "../../../config/axios/axios"
-// import axios from "axios";
-
 import { USER_DATA_URL, SAVE_ROUTINE_URL, SAVE_EXERCISE_URL, UPDATE_EXERCISE_URL, GET_SCHEDULE_URL } from "../../../config/config";
 
 

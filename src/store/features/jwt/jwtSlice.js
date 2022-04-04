@@ -16,17 +16,7 @@ export const getTokens = createAsyncThunk(
                 })
             }).catch(e=>console.log(e));
             
-            
-            return Object.values(await response.json());
-        //     dispatch(clearException());
-        //     try{
-
-        // } catch(e) {
-        //     dispatch(setError(true));
-        //     dispatch(setSeverity("error"));
-        //     dispatch(setMessage("Please ensure your email and password are correct"));
-        // }
-
+    return Object.values(await response.json());
     }
 );
 export const refreshTokens = createAsyncThunk(
