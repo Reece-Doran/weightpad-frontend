@@ -20,15 +20,17 @@ export default function Login() {
   const loginUser = async (e) => {    
     e.preventDefault();
 
-    try{
-      await dispatch(getTokens({username, password}));
+    const promiseResult = await dispatch(getTokens({username, password}));
+    const { payload } = promiseResult;
+
+    console.log(payload);
+
+    if(!payload){
+      setAlert(true) 
+    } else {
       await dispatch(getUserData({username}));
       navigate("/schedule");
-
-    } catch(e) {
-      setAlert(true);
     }
-
   }
 
   useEffect(() => {
@@ -46,7 +48,7 @@ export default function Login() {
                         <Card sx={{backgroundColor: "secondary.main"}}>
                             <Box component = "form" onSubmit={loginUser} 
                               sx={{
-                              borderRadius: 5, opacity: 0.8, width:"15em", height:"20em", marginTop:"50px", marginBottom:"-20px"}}
+                              borderRadius: 5, opacity: 0.8, width:"15em", height:"15em", marginTop:"50px", marginBottom:"-20px"}}
                               >
                             <Grid container direction="column" justifyContent="center" alignItems="center">
                               <Grid item justifySelf="center">
@@ -62,13 +64,13 @@ export default function Login() {
                               </Grid>
                               <Grid item>
                                 <Button variant="contained" color="primary" type="submit" >Submit</Button>        
-                                {alert?<Alert severity="error">Please ensure your email and password are correct</Alert>:""}
 
                               </Grid>
                             </Grid>
                           </Box>
                         </Card> 
                       </Grid>
+                                {alert?<Alert severity="error">Please ensure your email and password are correct</Alert>:""}
                     </Grid>
   
   return (

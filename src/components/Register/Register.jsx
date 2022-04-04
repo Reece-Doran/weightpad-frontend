@@ -64,8 +64,6 @@ export default function Register() {
                 <Grid item>
                   <Button variant="contained" color="primary" type="submit" >Submit</Button>        
                 </Grid>
-                {/* <Grid item>
-                </Grid> */}
               </Grid>
             </Box>
           </Card> 
