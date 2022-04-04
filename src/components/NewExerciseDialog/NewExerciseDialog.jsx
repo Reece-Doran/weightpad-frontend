@@ -18,6 +18,9 @@ export default function NewExerciseDialog(props) {
         }
         dispatch(saveExercise({routineId, newExerciseName, repsSets, weight}));
 
+        setNewExerciseName("");
+        setRepsSets("");
+        setWeight("")
         //TODO add snackbar message with MUI
         props.close();
     }
